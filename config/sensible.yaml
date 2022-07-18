@@ -1,0 +1,9 @@
+DATA:
+  PATH_TO_DATA_DIR: "/Users/petem/Dropbox/Peter_Dropbox/Uni/Speciale/"
+DATA_LOADER:
+  NUM_WORKERS: 4
+SOLVER:
+  LR: 0.01
+  LR_GAMMA: 0.1
+  LR_MILESTONES: [4,8,12]
+OUTPUT_DIR: '/Users/petem/Dropbox/Peter_Dropbox/Uni/PhD/NextLocationPrediction/output/'
