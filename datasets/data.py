@@ -100,3 +100,8 @@ class Sensible_dataset(Dataset):
             return Sensible_dataset(self.cfg, self.data[idx]["test"], "val_val", self.data_loc)
 
 
+@DATASET_REGISTRY.register()
+class Synthetic(pl.LightningDataModule):
+    def __init__(self, cfg):
+        super().__init__()
+        self.cfg = cfg
