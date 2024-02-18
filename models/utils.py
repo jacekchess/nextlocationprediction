@@ -2,8 +2,8 @@ import torch
 import numpy as np
 from functools import partial
 from collections import ChainMap, OrderedDict
-from pytorch_lightning.loops.epoch import EvaluationEpochLoop
-from pytorch_lightning.loops import EvaluationLoop
+# from pytorch_lightning.loops.epoch import EvaluationEpochLoop
+from pytorch_lightning.loops import evaluation_loop # .EvaluationLoop
 import torch.nn.functional as F
 from typing import Any
 from deprecate.utils import void
@@ -55,7 +55,7 @@ def compute_logits(model, inp, target, bs, out, data_loc, cfg):
 def lognorm(data, shape=2.292614965084133):
         return 1/(shape*data*np.sqrt(2*np.pi))*torch.exp(-torch.log(data)**2/(2*shape**2))
 
-class LSTM_validation_loop(EvaluationLoop):
+class LSTM_validation_loop(evaluation_loop._EvaluationLoop):
     def __init__(self):
         super().__init__()
 

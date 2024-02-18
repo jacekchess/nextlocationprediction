@@ -18,10 +18,10 @@ class LightningModel(pl.LightningModule):
         super().__init__()
         self.net = net
         self.cfg = cfg
-        self.acc_1_train = Accuracy(top_k=1)
-        self.acc_5_train = Accuracy(top_k=5)
-        self.acc_1_val = Accuracy(top_k=1)
-        self.acc_5_val = Accuracy(top_k=5)
+        self.acc_1_train = Accuracy(top_k=1, task="multiclass", num_classes=cfg.MODEL.NUM_CLASSES)
+        self.acc_5_train = Accuracy(top_k=5, task="multiclass", num_classes=cfg.MODEL.NUM_CLASSES)
+        self.acc_1_val = Accuracy(top_k=1, task="multiclass", num_classes=cfg.MODEL.NUM_CLASSES)
+        self.acc_5_val = Accuracy(top_k=5, task="multiclass", num_classes=cfg.MODEL.NUM_CLASSES)
 
     def forward(self, x):
         return self.net(x)
@@ -92,7 +92,8 @@ def main():
     checkpoint_callback = ModelCheckpoint(dirpath=cfg.OUTPUT_DIR, save_top_k=2, monitor="val_loss")
 
     trainer = pl.Trainer(
-        gpus=cfg.NUM_GPUS,
+        # gpus=cfg.NUM_GPUS,
+        devices=cfg.NUM_GPUS,
         num_sanity_val_steps=0,
         logger=wandb_logger,
         enable_model_summary=False,

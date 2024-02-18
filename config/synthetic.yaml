@@ -1,0 +1,4 @@
+TRAIN:
+  DATASET: "Synthetic"
+TEST:
+  DATASET: "Synthetic"
